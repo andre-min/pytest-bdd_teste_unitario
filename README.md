@@ -1,62 +1,49 @@
-## Pré Requisitos Pytest
+# Carrinho de Compras
 
-- [Python 3](https://www.python.org/)  
+Este projeto implementa um simples **Carrinho de Compras**, onde é possível adicionar e remover itens e calcular o valor total dos produtos no carrinho.
 
-- [Pytest](https://pypi.org/project/pytest/)  
+## Estrutura do Projeto
+
+O projeto possui as seguintes partes principais:
+- `CarrinhoCompras`: Classe responsável por gerenciar os itens no carrinho e suas operações.
+- **Testes BDD (Behavior Driven Development)**: Os testes são escritos usando o `pytest-bdd` para definir cenários comportamentais do carrinho de compras.
+- **Feature File**: O arquivo `.feature` define os cenários em que os testes são baseados.
+
+## Tecnologias Utilizadas
+* Python
+* Pytest
+* Pytest-BDD
+
+## Pré-requisitos
+
+Certifique-se de ter o Python e o `pip` instalados. Para instalar as dependências necessárias, rode:
+
+```bash
+pip install pytest pytest-bdd
 ```
-pip install pytest
+## Como rodar o projeto
+### Execução de Testes
+Para rodar os testes de BDD e verificar o comportamento da aplicação:
+
+1 - Navegue até o diretório raiz do projeto.  
+2 - Execute o seguinte comando para rodar todos os testes:  
+- Modo Padrão  
 ```
-
-- [Pytest-bdd](https://pypi.org/project/pytest-bdd/)  
+pytest
 ```
-pip install pytest-bdd
+##### resultado
+|![](./gifs/padrao.png)
+- Modo verbose  
 ```
-
-### class CarrinhoCompras  
-Funções a serem testado.  
-
+pytest -v
 ```
-class CarrinhoCompras:
-    def __init__(self):
-        self.itens = []
+##### resultado
+|![](./gifs/verbose.png)
 
-    
-    def adicionar_item(self, item, preco):
-        self.itens.append({"item": item, "preco": preco})
 
-    def remover_item(self):
-        if self.itens:
-            self.itens.pop()
+## Os seguintes cenários estão cobertos pelos testes:
 
-    def total(self):
-        return sum(item['preco'] for item in self.itens)
-
-    def esta_vazio(self):
-        return len(self.itens) == 0
-```
-
-## Features
-Aqui estamos testando 2 cenários.  
-
-```
-Feature: Carrinho de compras
-  Como usuário
-  Eu quero adicionar e remover itens do meu carrinho de compras
-  Para gerenciar minhas compras
-
-Scenario: Adicionar itens ao carrinho
-  Given que tenho um carrinho de compras com item "Camiseta" e preço R$ 29.99
-  When eu adiciono o item "Calca" com o preço R$ 49.99
-  Then o total do carrinho de compras deve ser R$ 79.98
-
-Scenario: Remover item do carrinho
-  Given que tenho um carrinho de compras com item "Camiseta" e preço R$ 29.99
-  When eu removo o item do carrinho
-  Then o carrinho de compras deve estar vazio
-```
-
-- Com a class e feature criado, no terminal rode o comando  
-isso criarar um arquivo na pasta tests com o nome de test_carrinho_compras.py   
-```
-pytest-bdd generate features/carrinho.feature > tests/test_carrinho_compras.py
-```
+### Adicionar itens ao carrinho  
+Dado que o usuário possui um carrinho de compras com um item, ao adicionar outro item, o total do carrinho é atualizado corretamente.
+### Remover item do carrinho  
+Dado que o usuário possui um item no carrinho de compras, ao remover este item, o carrinho fica vazio.
